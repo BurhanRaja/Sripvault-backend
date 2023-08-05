@@ -7,7 +7,7 @@ import path from "path";
 
 const storage = multer.diskStorage({
   destination: async (req, file, cb) => {
-    cb(null, `public/uploads/`);
+    cb(null, `public/uploads`);
   },
   filename: async (req, file, cb) => {
     const uniqueName =
