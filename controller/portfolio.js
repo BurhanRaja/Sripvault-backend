@@ -74,6 +74,7 @@ export const stockBuyTicker = async (req, res) => {
       message: `Stock bought successfully`,
     });
   } catch (err) {
+    console.log(err)
     return res.status(500).send({
       success,
       message: "Internal Server Error.",
@@ -753,14 +754,14 @@ export const getETFPortfolio = async (req, res) => {
   try {
     let portfolio = await Portfolio.findOne({ user_id: req.user.id });
 
+    let etfData = [];
+
     if (!portfolio) {
       return res.status(200).send({
         success,
         etfPortfolio: etfData,
       });
     }
-
-    let etfData = [];
 
     for (const etf of portfolio?.etfs) {
       let currEtf = await axios.get(
