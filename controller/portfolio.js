@@ -15,7 +15,7 @@ export const stockBuyTicker = async (req, res) => {
 
     let wallet = await Wallet.findOne({ user_id: req.user.id });
 
-    if (wallet.balance < investment) {
+    if (wallet.balance < buy_price * no_of_shares) {
       return res.status(400).send({
         success,
         message: "Not Enough Funds in the Wallet.",
